@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#game-container {
+    display: grid;
+    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, 50px);
+    gap: 1px;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+}
+
+.water {
+    background-color: blue;
+}
+
+.grass {
+    background-color: green;
+}
+
+.dirt {
+    background-color: rgb(56, 18, 18);
+}
+
+.player {
+    background-color: red;
+}
