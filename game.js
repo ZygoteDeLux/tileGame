@@ -6,15 +6,44 @@ const tileSize = 50;
 const numRows = 5;
 const numCols = 5;
 
-const tiles = [
-    "water", "water", "water", "water", "water",
-    "water", "grass", "grass", "grass", "water",
-    "water", "grass", "dirt", "grass", "water",
-    "water", "grass", "grass", "grass", "water",
-    "water", "water", "water", "water", "water"
-];
+function generateRandomTiles(numRows, numCols) {
+    const tileTypes = ["water", "grass", "dirt"];
+    const tiles = new Array(numRows * numCols).fill("water");
 
-const player = new Player(2, 2);
+    let currentRow = 0;
+    let currentCol = 0;
+
+    // Set the starting tile (top-left corner) to be either grass or dirt
+    tiles[0] = tileTypes[Math.floor(Math.random() * (tileTypes.length - 1)) + 1];
+
+    while (currentRow < numRows) {
+        const tileType = Math.random() < 0.5 ? "grass" : "dirt";
+        tiles[currentRow * numCols + currentCol] = tileType;
+
+        if (Math.random() < 0.5 && currentCol < numCols - 1) {
+           
+            currentCol++;
+        } else {
+            
+            currentRow++;
+        }
+    }
+
+   
+    for (let i = 0; i < numRows * numCols; i++) {
+        if (tiles[i] === "water") {
+            const randomIndex = Math.floor(Math.random() * tileTypes.length);
+            tiles[i] = tileTypes[randomIndex];
+        }
+    }
+
+    return tiles;
+}
+
+
+
+const tiles = generateRandomTiles(numRows, numCols);
+const player = new Player(0, 0);
 const map = new Map(gameContainer, tiles, numRows, numCols);
 
 map.drawMap(player);
@@ -42,4 +71,3 @@ document.addEventListener("keydown", (e) => {
         map.drawMap(player);
     }
 });
-
