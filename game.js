@@ -1,4 +1,4 @@
-import Engine from "./tiles.js";
+import Map from "./tiles.js";
 import Player from "./player.js";
 
 const gameContainer = document.getElementById("game-container");
@@ -15,7 +15,7 @@ const tiles = [
 ];
 
 const player = new Player(2, 2);
-const map = new Engine(gameContainer, tiles, numRows, numCols);
+const map = new Map(gameContainer, tiles, numRows, numCols);
 
 map.drawMap(player);
 
